@@ -5,9 +5,7 @@ from libprobe.asset import Asset
 from libprobe.exceptions import CheckException, IgnoreResultException
 
 QUERIES = (
-    MIB_INDEX['UBNT-UniFi-MIB']['santricityApSystem'],
-    MIB_INDEX['UBNT-UniFi-MIB']['santricityRadioEntry'],
-    MIB_INDEX['UBNT-UniFi-MIB']['santricityVapEntry'],
+    MIB_INDEX['SM10-R3-MIB']['infoEntry'],
 )
 
 
@@ -25,12 +23,4 @@ async def check_santricity(
         raise CheckException('unable to connect')
     except (InvalidConfigException, SnmpNoAuthParams):
         raise IgnoreResultException
-    except Exception:
-        raise
-    for item in state.get('santricityRadioEntry', []):
-        item.pop('santricityRadioIndex')
-        item['name'] = item.pop('santricityRadioName')
-    for item in state.get('santricityVapEntry', []):
-        item.pop('santricityVapIndex')
-        item['name'] = item.pop('santricityVapName')
     return state
