@@ -22,4 +22,3 @@ Variable            | Default                        | Description
 ```
 docker build -t santricity-probe . --no-cache
 ```
-# santricity-probe
