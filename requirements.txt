@@ -1,2 +1,2 @@
-asyncsnmplib==0.1.8
+aiohttp==3.8.3
 libprobe==0.2.27
