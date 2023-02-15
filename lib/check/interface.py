@@ -7,7 +7,7 @@ async def check_interface(
         asset_config: dict,
         check_config: dict):
 
-    path = '/devmgr/v2/{ssid}/analysed-interface-statistics'
+    path = '/devmgr/v2/storage-systems/{ssid}/analysed-interface-statistics'
     data = await query(asset, asset_config, check_config, path)
     return {
         'interface': [{

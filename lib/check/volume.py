@@ -7,7 +7,7 @@ async def check_volume(
         asset_config: dict,
         check_config: dict):
 
-    path = '/devmgr/v2/{ssid}/analysed-volume-statistics'
+    path = '/devmgr/v2/storage-systems/{ssid}/analysed-volume-statistics'
     data = await query(asset, asset_config, check_config, path)
     return {
         'volume': [{
