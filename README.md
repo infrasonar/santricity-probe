@@ -25,7 +25,12 @@ docker build -t santricity-probe . --no-cache
 
 ## Config
 
-See the [SNMP probe](https://github.com/infrasonar/snmp-probe#config).
+```yaml
+santricity:
+  config:
+    username: "my_username"
+    password: "my_password"
+```
 
 ## Dry run
 
