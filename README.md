@@ -35,6 +35,10 @@ santricity:
 ## Dry run
 
 Available checks:
+- `drive`
+- `interface`
+- `system`
+- `volume`
 - `santricity`
 
 Create a yaml file, for example _(test.yaml)_:
@@ -45,6 +49,7 @@ asset:
   check: "system"
   config:
     address: "192.168.1.2"
+    storageSystemId: 1  # default
 ```
 
 Run the probe with the `DRY_RUN` environment variable set the the yaml file above.

@@ -6,6 +6,7 @@ from libprobe.exceptions import IgnoreResultException
 
 
 DEFAULT_HTTPS_PORT = 8443
+DEFAULT_SSID = 1
 
 
 async def query(
@@ -17,6 +18,9 @@ async def query(
     address = check_config.get('address')
     if not address:
         address = asset.name
+    port = check_config.get('port', DEFAULT_HTTPS_PORT)
+    ssid = check_config.get('storageSystemId', DEFAULT_SSID)
+
     username = asset_config.get('username')
     password = asset_config.get('password')
     if None in (username, password):
@@ -25,7 +29,7 @@ async def query(
 
     auth_str = base64.encodebytes(
         f'{username}:{password}'.encode()).decode().replace('\n', '')
-    url = f'https://{address}:{DEFAULT_HTTPS_PORT}{path}'
+    url = f'https://{address}:{port}{path.format(ssid=ssid)}'
     headers = {
         'authorization': f'Basic {auth_str}',
         'accept': 'application/json',
