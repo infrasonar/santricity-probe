@@ -39,7 +39,6 @@ async def query(
         async with session.get(url,
                                headers=headers,
                                ssl=False) as resp:
-            resp.raise_for_status()
             assert resp.status < 203, \
                 f'respose returned with error: {resp.reason} ({resp.status})'
 
