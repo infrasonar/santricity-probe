@@ -10,7 +10,7 @@ async def check_controller(
     path = '/devmgr/v2/storage-systems/{ssid}/analysed-controller-statistics'
     data = await query(asset, asset_config, check_config, path)
     return {
-        'system': [{
+        'controller': [{
             'name': item.get('controllerId'),
             'averageReadOpSize': item.get('averageReadOpSize'),
             'averageWriteOpSize': item.get('averageWriteOpSize'),
