@@ -35,9 +35,9 @@ santricity:
 ## Dry run
 
 Available checks:
-- `drive`
+- `controller`
+- `disk`
 - `interface`
-- `system`
 - `volume`
 - `santricity`
 
