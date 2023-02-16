@@ -11,7 +11,7 @@ async def check_volume(
     data = await query(asset, asset_config, check_config, path)
     return {
         'volume': [{
-            'name': item['volumeName'],
+            'name': item['volumeId'],
             'averageReadOpSize': item.get('averageReadOpSize'),
             'averageWriteOpSize': item.get('averageWriteOpSize'),
             'combinedIOps': item.get('combinedIOps'),
@@ -37,7 +37,7 @@ async def check_volume(
             'readPhysicalIOps': item.get('readPhysicalIOps'),
             'readResponseTime': item.get('readResponseTime'),
             'readThroughput': item.get('readThroughput'),
-            'volumeId': item.get('volumeId'),
+            'volumeName': item.get('volumeName'),
             'workLoadId': item.get('workLoadId'),
             'writeCacheUtilization': item.get('writeCacheUtilization'),
             'writeHitBytes': item.get('writeHitBytes'),
