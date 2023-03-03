@@ -138,4 +138,6 @@ async def check_volume(
 
         output.append(volume)
 
-    return output
+    return {
+        'volume': output
+    }

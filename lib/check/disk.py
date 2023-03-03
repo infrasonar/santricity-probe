@@ -34,8 +34,21 @@ async def check_disk(
     path = '/devmgr/v2/storage-systems/{ssid}/drives'
     data = await query(asset, asset_config, check_config, path)
 
+    # TODO
+    # path = '/devmgr/v2/storage-systems/{ssid}/graph'
+    # data = await query(asset, asset_config, check_config, path)
+    # tray_lk = {a['id']: a for a in data['tray']}
+
     output = []
     for item in data:
+        # trayid = tray_lk[item['physicalLocation']['trayRef']]['trayId']
+        # pos = item['physicalLocation']['localPosition']
+        # slot = item['physicalLocation']['slot']
+        # item['productID']
+        # item['status']
+        # item['driveTemperature']['currentTemp']
+        # item['driveTemperature']['refTemp']
+
         disk = {
             'name': item['physicalLocation']['label'],
             'available': item.get('available'),
@@ -99,4 +112,6 @@ async def check_disk(
 
         output.append(disk)
 
-    return output
+    return {
+        'disk': output
+    }

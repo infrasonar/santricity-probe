@@ -76,4 +76,6 @@ async def check_controller(
 
         output.append(controller)
 
-    return output
+    return {
+        'controller': output
+    }
