@@ -62,8 +62,14 @@ async def check_volume(
 
     output = []
     for item in data:
+        # item['label']
+        # item['status']
+        # item['volumeUse']
+        # item['diskPool']
+        # item['totalSizeInBytes']
+
         volume = {
-            'name': item['name'],
+            'name': item['label'],
             'action': item.get('action'),
             'applicationTagOwned': item.get('applicationTagOwned'),
             'asyncMirrorSource': item.get('asyncMirrorSource'),
@@ -85,10 +91,8 @@ async def check_volume(
             'flashCached': item.get('flashCached'),
             'id': item.get('id'),
             'increasingBy': item.get('increasingBy'),
-            'label': item.get('label'),
             'mapped': item.get('mapped'),
             'mgmtClientAttribute': item.get('mgmtClientAttribute'),
-            'name': item.get('name'),
             'objectType': item.get('objectType'),
             'offline': item.get('offline'),
             'onlineVolumeCopy': item.get('onlineVolumeCopy'),
@@ -130,7 +134,7 @@ async def check_volume(
 
         storage_pool = storage_pools.get(item['volumeGroupRef'])
         if storage_pool:
-            volume['pool'] = storage_pool.get('name')
+            volume['pool'] = storage_pool.get('label')
 
         perf = statistics.get(item['id'])
         if perf:

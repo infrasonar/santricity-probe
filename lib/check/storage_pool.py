@@ -11,10 +11,9 @@ async def check_storage_pool(
     data = await query(asset, asset_config, check_config, path)
 
     res = [{
-        'name': item['id'],
+        'name': item['label'],
         'diskPool': item.get('diskPool'),
         'freeSpace': item.get('freeSpace'),
-        'label': item.get('label'),
         'raidStatus': item.get('raidStatus'),
         'totalRaidedSpace': item.get('totalRaidedSpace'),
         'usedSpace': item.get('usedSpace'),

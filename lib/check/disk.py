@@ -11,7 +11,6 @@ async def check_disk(
     data = await query(asset, asset_config, check_config, path)
     statistics = {
         item['diskId']: {
-            'name': item['diskId'],
             'averageReadOpSize': item.get('averageReadOpSize'),
             'averageWriteOpSize': item.get('averageWriteOpSize'),
             'combinedIOps': item.get('combinedIOps'),
@@ -48,6 +47,8 @@ async def check_disk(
         # item['status']
         # item['driveTemperature']['currentTemp']
         # item['driveTemperature']['refTemp']
+        # item['ssdWearLife']['averageEraseCountPercent']
+        # item['ssdWearLife']['spareBlocksRemainingPercent']
 
         disk = {
             'name': item['physicalLocation']['label'],
