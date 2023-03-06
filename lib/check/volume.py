@@ -62,67 +62,12 @@ async def check_volume(
 
     output = []
     for item in data:
-        # item['label']
-        # item['status']
-        # item['volumeUse']
-        # item['diskPool']
-        # item['totalSizeInBytes']
-
         volume = {
             'name': item['label'],
-            'action': item.get('action'),
-            'applicationTagOwned': item.get('applicationTagOwned'),
-            'asyncMirrorSource': item.get('asyncMirrorSource'),
-            'asyncMirrorTarget': item.get('asyncMirrorTarget'),
-            'blkSize': item.get('blkSize'),
-            'cacheMirroringValidateProtectionInformation':
-            item.get('cacheMirroringValidateProtectionInformation'),
-            'capacity': item.get('capacity'),  # TODOK int?
-            'currentControllerId': item.get('currentControllerId'),
-            'currentManager': item.get('currentManager'),
-            'dataAssurance': item.get('dataAssurance'),
             'diskPool': item.get('diskPool'),
-            'dssMaxSegmentSize': item.get('dssMaxSegmentSize'),
-            'dssPreallocEnabled': item.get('dssPreallocEnabled'),
-            'expectedProtectionInformationAppTag':
-            item.get('expectedProtectionInformationAppTag'),
-            'extendedUniqueIdentifier': item.get('extendedUniqueIdentifier'),
-            'extremeProtection': item.get('extremeProtection'),
-            'flashCached': item.get('flashCached'),
-            'id': item.get('id'),
-            'increasingBy': item.get('increasingBy'),
-            'mapped': item.get('mapped'),
-            'mgmtClientAttribute': item.get('mgmtClientAttribute'),
-            'objectType': item.get('objectType'),
-            'offline': item.get('offline'),
-            'onlineVolumeCopy': item.get('onlineVolumeCopy'),
-            'pitBaseVolume': item.get('pitBaseVolume'),
-            'preReadRedundancyCheckEnabled':
-            item.get('preReadRedundancyCheckEnabled'),
-            'preferredControllerId': item.get('preferredControllerId'),
-            'preferredManager': item.get('preferredManager'),
-            'protectionInformationCapable':
-            item.get('protectionInformationCapable'),
-            'protectionType': item.get('protectionType'),
-            'raidLevel': item.get('raidLevel'),
-            'reconPriority': item.get('reconPriority'),
-            'remoteMirrorSource': item.get('remoteMirrorSource'),
-            'remoteMirrorTarget': item.get('remoteMirrorTarget'),
-            'repairedBlockCount': item.get('repairedBlockCount'),
-            'sectorOffset': item.get('sectorOffset'),
-            'segmentSize': item.get('segmentSize'),
             'status': item.get('status'),
-            'thinProvisioned': item.get('thinProvisioned'),
             'totalSizeInBytes': item.get('totalSizeInBytes'),
-            'volumeCopySource': item.get('volumeCopySource'),
-            'volumeCopyTarget': item.get('volumeCopyTarget'),
-            'volumeFull': item.get('volumeFull'),
-            'volumeGroupRef': item.get('volumeGroupRef'),
-            'volumeHandle': item.get('volumeHandle'),
-            'volumeRef': item.get('volumeRef'),
             'volumeUse': item.get('volumeUse'),
-            'worldWideName': item.get('worldWideName'),
-            'wwn': item.get('wwn'),
         }
 
         for m in item['listOfMappings']:
