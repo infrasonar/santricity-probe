@@ -1,5 +1,6 @@
 from libprobe.asset import Asset
 from ..query import query
+from ..utils import to_int
 
 
 async def check_storage_pool(
@@ -13,10 +14,10 @@ async def check_storage_pool(
     res = [{
         'name': item['label'],
         'diskPool': item.get('diskPool'),
-        'freeSpace': item.get('freeSpace'),
+        'freeSpace': to_int(item.get('freeSpace')),
         'raidStatus': item.get('raidStatus'),
-        'totalRaidedSpace': item.get('totalRaidedSpace'),
-        'usedSpace': item.get('usedSpace'),
+        'totalRaidedSpace': to_int(item.get('totalRaidedSpace')),
+        'usedSpace': to_int(item.get('usedSpace')),
     } for item in data]
     return {
         'storagePool': res

@@ -1,5 +1,6 @@
 from libprobe.asset import Asset
 from ..query import query
+from ..utils import to_int
 
 
 async def check_volume(
@@ -66,7 +67,7 @@ async def check_volume(
             'name': item['label'],
             'diskPool': item.get('diskPool'),
             'status': item.get('status'),
-            'totalSizeInBytes': item.get('totalSizeInBytes'),
+            'totalSizeInBytes': to_int(item.get('totalSizeInBytes')),
             'volumeUse': item.get('volumeUse'),
         }
 

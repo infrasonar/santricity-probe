@@ -1,5 +1,6 @@
 from libprobe.asset import Asset
 from ..query import query
+from ..utils import to_int
 
 
 async def check_thin_volume(
@@ -12,10 +13,12 @@ async def check_thin_volume(
 
     res = [{
         'name': item['label'],
-        'capacity': item.get('capacity'),
-        'currentProvisionedCapacity': item.get('currentProvisionedCapacity'),
-        'initialProvisionedCapacity': item.get('initialProvisionedCapacity'),
-        'totalSizeInBytes': item.get('totalSizeInBytes'),
+        'capacity': to_int(item.get('capacity')),
+        'currentProvisionedCapacity':
+            to_int(item.get('currentProvisionedCapacity')),
+        'initialProvisionedCapacity':
+            to_int(item.get('initialProvisionedCapacity')),
+        'totalSizeInBytes': to_int(item.get('totalSizeInBytes')),
     } for item in data]
     return {
         'thinVolume': res
