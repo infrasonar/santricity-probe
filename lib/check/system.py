@@ -1,3 +1,4 @@
+import time
 from libprobe.asset import Asset
 from ..query import query
 
@@ -7,8 +8,19 @@ async def check_system(
         asset_config: dict,
         check_config: dict):
 
+    now = int(time.time())
     path = '/devmgr/v2/storage-systems/{ssid}/graph'
     data = await query(asset, asset_config, check_config, path)
+
+    sa_data = data['sa']['saData']
+    sa = {
+        'name': sa_data['storageArrayLabel'],
+        'needsAttention': sa_data.get('needsAttention'),
+    }
+    boot_time = sa_data.get('bootTime')
+    if boot_time:
+        sa['bootTime'] = int(boot_time)
+        sa['uptime'] = now - int(boot_time)
 
     battery = [{
         'name': item['id'],
@@ -67,6 +79,7 @@ async def check_system(
     } for item in data['tray']]
 
     return {
+        'array': [sa],
         'battery': battery,
         'esm': esm,
         'fan': fan,

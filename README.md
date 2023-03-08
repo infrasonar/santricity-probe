@@ -38,15 +38,17 @@ Available checks:
 - `controller`
 - `disk`
 - `interface`
+- `storagePool`
+- `system`
+- `thinVolume`
 - `volume`
-- `santricity`
 
 Create a yaml file, for example _(test.yaml)_:
 
 ```yaml
 asset:
   name: "foo.local"
-  check: "santricity"
+  check: "system"
   config:
     address: "192.168.1.2"
     storageSystemId: 1  # default

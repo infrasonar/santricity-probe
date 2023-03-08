@@ -30,6 +30,10 @@ async def check_disk(
         } for item in data
     }
 
+    path = '/devmgr/v2/storage-systems/{ssid}/storage-pools'
+    data = await query(asset, asset_config, check_config, path)
+    storage_pools = {item['id']: item for item in data}
+
     path = '/devmgr/v2/storage-systems/{ssid}/drives'
     data = await query(asset, asset_config, check_config, path)
 
@@ -48,6 +52,10 @@ async def check_disk(
             item.get('ssdWearLife', {}).get('spareBlocksRemainingPercent'),
 
         }
+        storage_pool = storage_pools.get(item['currentVolumeGroupRef'])
+        if storage_pool:
+            disk['volumeGroup'] = storage_pool.get('label')
+
         perf = statistics.get(item['id'])
         if perf:
             disk.update(perf)

@@ -1,3 +1,4 @@
+import time
 from libprobe.asset import Asset
 from ..query import query
 
@@ -7,6 +8,7 @@ async def check_controller(
         asset_config: dict,
         check_config: dict):
 
+    now = int(time.time())
     path = '/devmgr/v2/storage-systems/{ssid}/analysed-controller-statistics'
     data = await query(asset, asset_config, check_config, path)
     statistics = {
@@ -41,6 +43,11 @@ async def check_controller(
             'name': item['physicalLocation']['label'],
             'status': item.get('status'),
         }
+        boot_time = item.get('bootTime')
+        if boot_time:
+            controller['bootTime'] = int(boot_time)
+            controller['uptime'] = now - int(boot_time)
+
         perf = statistics.get(item['id'])
         if perf:
             controller.update(perf)
