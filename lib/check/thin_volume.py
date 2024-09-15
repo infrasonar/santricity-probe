@@ -8,7 +8,7 @@ def to_percent_used(item: dict):
     cap = to_int(item.get('capacity'))
     current_prov = to_int(item.get('currentProvisionedCapacity'))
     try:
-        return (cap - current_prov) / total * 100
+        return (cap - current_prov) / total * 100  # type: ignore
     except Exception:
         return
 
