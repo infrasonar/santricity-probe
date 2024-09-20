@@ -7,7 +7,9 @@ def to_percent_used(item: dict):
     total = to_int(item.get('totalRaidedSpace'))
     used = to_int(item.get('usedSpace'))
     try:
-        return used / total * 100  # type: ignore
+        assert isinstance(total, int)
+        assert isinstance(used, int)
+        return used / total * 100
     except Exception:
         return
 
