@@ -8,6 +8,9 @@ def to_percent_used(item: dict):
     cap = to_int(item.get('capacity'))
     current_prov = to_int(item.get('currentProvisionedCapacity'))
     try:
+        assert isinstance(total, int)
+        assert isinstance(cap, int)
+        assert isinstance(current_prov, int)
         return (cap - current_prov) / total * 100
     except Exception:
         return

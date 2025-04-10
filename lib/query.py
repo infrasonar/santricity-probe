@@ -2,7 +2,8 @@ import aiohttp
 import base64
 import logging
 from libprobe.asset import Asset
-from libprobe.exceptions import IgnoreResultException
+from libprobe.exceptions import CheckException
+from . import DOCS_URL
 
 
 DEFAULT_HTTPS_PORT = 8443
@@ -24,8 +25,10 @@ async def query(
     username = asset_config.get('username')
     password = asset_config.get('password')
     if None in (username, password):
-        logging.error(f'missing credentails for {asset}')
-        raise IgnoreResultException
+        raise CheckException(
+            'Missing credentials. Please refer to the following documentation'
+            f' for detailed instructions: <{DOCS_URL}>'
+        )
 
     auth_str = base64.encodebytes(
         f'{username}:{password}'.encode()).decode().replace('\n', '')
