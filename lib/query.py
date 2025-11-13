@@ -4,6 +4,7 @@ import logging
 from libprobe.asset import Asset
 from libprobe.exceptions import CheckException
 from . import DOCS_URL
+from .connector import get_connector
 
 
 DEFAULT_HTTPS_PORT = 8443
@@ -38,7 +39,7 @@ async def query(
         'accept': 'application/json',
     }
 
-    async with aiohttp.ClientSession() as session:
+    async with aiohttp.ClientSession(connector=get_connector()) as session:
         async with session.get(url,
                                headers=headers,
                                ssl=False) as resp:
