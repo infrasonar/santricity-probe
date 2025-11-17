@@ -1,4 +1,5 @@
 from libprobe.asset import Asset
+from libprobe.check import Check
 from ..query import query
 from ..utils import to_int
 
@@ -16,24 +17,25 @@ def to_percent_used(item: dict):
         return
 
 
-async def check_thin_volume(
-        asset: Asset,
-        asset_config: dict,
-        check_config: dict):
+class CheckThinVolume(Check):
+    key = 'thinVolume'
 
-    path = '/devmgr/v2/storage-systems/{ssid}/thin-volumes'
-    data = await query(asset, asset_config, check_config, path)
+    @staticmethod
+    async def run(asset: Asset, local_config: dict, config: dict) -> dict:
 
-    res = [{
-        'name': item['label'],
-        'capacity': to_int(item.get('capacity')),
-        'currentProvisionedCapacity':
-            to_int(item.get('currentProvisionedCapacity')),
-        'initialProvisionedCapacity':
-            to_int(item.get('initialProvisionedCapacity')),
-        'percentUsed': to_percent_used(item),
-        'totalSizeInBytes': to_int(item.get('totalSizeInBytes')),
-    } for item in data]
-    return {
-        'thinVolume': res
-    }
+        path = '/devmgr/v2/storage-systems/{ssid}/thin-volumes'
+        data = await query(asset, local_config, config, path)
+
+        res = [{
+            'name': item['label'],
+            'capacity': to_int(item.get('capacity')),
+            'currentProvisionedCapacity':
+                to_int(item.get('currentProvisionedCapacity')),
+            'initialProvisionedCapacity':
+                to_int(item.get('initialProvisionedCapacity')),
+            'percentUsed': to_percent_used(item),
+            'totalSizeInBytes': to_int(item.get('totalSizeInBytes')),
+        } for item in data]
+        return {
+            'thinVolume': res
+        }

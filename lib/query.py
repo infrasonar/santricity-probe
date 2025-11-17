@@ -13,18 +13,18 @@ DEFAULT_SSID = 1
 
 async def query(
         asset: Asset,
-        asset_config: dict,
-        check_config: dict,
+        local_config: dict,
+        config: dict,
         path: str) -> dict:
 
-    address = check_config.get('address')
+    address = config.get('address')
     if not address:
         address = asset.name
-    port = check_config.get('port', DEFAULT_HTTPS_PORT)
-    ssid = check_config.get('storageSystemId', DEFAULT_SSID)
+    port = config.get('port', DEFAULT_HTTPS_PORT)
+    ssid = config.get('storageSystemId', DEFAULT_SSID)
 
-    username = asset_config.get('username')
-    password = asset_config.get('password')
+    username = local_config.get('username')
+    password = local_config.get('password')
     if None in (username, password):
         raise CheckException(
             'Missing credentials. Please refer to the following documentation'
