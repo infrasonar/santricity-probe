@@ -1,7 +1,4 @@
-from typing import Optional
-
-
-def to_int(val: Optional[str]) -> Optional[int]:
+def to_int(val: str | None) -> int | None:
     try:
         assert val is not None
         return int(val)
@@ -9,7 +6,7 @@ def to_int(val: Optional[str]) -> Optional[int]:
         return
 
 
-def to_float(val: Optional[str]) -> Optional[float]:
+def to_float(val: str | None) -> float | None:
     try:
         assert val is not None
         return float(val)
