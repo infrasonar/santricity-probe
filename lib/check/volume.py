@@ -6,6 +6,7 @@ from ..utils import to_int
 
 class CheckVolume(Check):
     key = 'volume'
+    unchanged_eol = 0
 
     @staticmethod
     async def run(asset: Asset, local_config: dict, config: dict) -> dict:

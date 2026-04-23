@@ -6,6 +6,7 @@ from ..query import query
 
 class CheckController(Check):
     key = 'controller'
+    unchanged_eol = 0
 
     @staticmethod
     async def run(asset: Asset, local_config: dict, config: dict) -> dict:
